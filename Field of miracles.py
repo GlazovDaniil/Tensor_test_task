@@ -28,7 +28,7 @@ def min_substring_for_slices(len_tuple: int, all_tuple: tuple[int]) -> int:
             return i
 
 
-if __name__ == '__main__':
+def main():
     N = int(input())
     if N > 0:
         nums = tuple(map(int, input().split()))
@@ -36,3 +36,7 @@ if __name__ == '__main__':
         print(min_substring_for_slices(N, nums))  # перебор срезов валидной динны
     else:
         print(0)
+
+
+if __name__ == '__main__':
+    main()
