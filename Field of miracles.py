@@ -1,11 +1,11 @@
-def min_substring_for_hash_string(all_nums: list[int]) -> int:
+def min_substring_for_hash_string(all_nums: tuple[int]) -> int:
     n = len(all_nums)
     x_ = 257
     P = 10 ** 9 + 7
     h = [0] * (n + 1)
     X = [0] * (n + 1)
     X[0] = 1
-    all_nums = [0] + all_nums
+    all_nums = (0,) + all_nums
     for i in range(1, n + 1):
         h[i] = (h[i - 1] * x_ + all_nums[i]) % P
         X[i] = (X[i - 1] * x_) % P
@@ -22,9 +22,17 @@ def min_substring_for_hash_string(all_nums: list[int]) -> int:
         return n
 
 
-N = int(input())
-if N > 0:
-    nums = list(map(int, input().split()))
-    print(min_substring_for_hash_string(nums))
-else:
-    print(0)
+def min_substring_for_slices(len_tuple: int, all_tuple: tuple[int]) -> int:
+    for i in range(1, len_tuple):
+        if (len_tuple - 1) % i == 0 and all_tuple[i:] == all_tuple[:-i]:
+            return i
+
+
+if __name__ == '__main__':
+    N = int(input())
+    if N > 0:
+        nums = tuple(map(int, input().split()))
+        # print(min_substring_for_hash_string(nums))  # хеш
+        print(min_substring_for_slices(N, nums))  # перебор срезов валидной динны
+    else:
+        print(0)
